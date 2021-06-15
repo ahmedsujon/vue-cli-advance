@@ -1,27 +1,40 @@
 <template>
     <div id="allfriend">
-       <h2> All Friend </h2>
-       <div v-for="(friend, index) in friends" :key="index">
-            <h5 @click="unfriend(friend.name)">{{ friend.name }}</h5>
+       <h2> All Posts </h2>
+       <hr>
+       <div v-for="post in posts" :key="post.id">
+            <h3>{{ post.id }}</h3>
+            <h3>{{ post.title }}</h3>
+            <hp>{{ post.body }}</hp>
        </div>
     </div>
 </template>
 
 
 <script>
+import axios from 'axios'
 export default {
     name: 'AllFriend',
     props:['friends'],
     data() {
         return {
-          
+            posts:[]
         }
     },
 
     methods: {
-        unfriend(name){
-            this.$emit('delete', {name})
-        }
+       
+    },
+
+    created() {
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then(response =>{
+            this.posts = response.data
+            // console.log(response)
+        })
+        .catch(error =>{
+            console.log(error)
+        });
     },
 }
 </script>

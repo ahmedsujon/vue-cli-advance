@@ -2,8 +2,7 @@
   <div id="app">
     <h2>{{title}}</h2>
     <NavBar></NavBar>
-    <AllFriend :friends="friends" @delete="deleteFriend"></AllFriend>
-    <OnlineFriend :friends="friends"></OnlineFriend>
+    <AllFriend></AllFriend>
   </div>
 </template>
 
@@ -11,7 +10,6 @@
 
 import NavBar from './components/NavBar.vue'
 import AllFriend from './components/AllFriend'
-import OnlineFriend from './components/OnineFriend'
 
 export default {
   name: 'App',
@@ -20,28 +18,11 @@ export default {
     return {
       title: 'Hello World!',
 
-        friends:[
-                {name: 'A', online: true},
-                {name: 'B', online: true},
-                {name: 'C', online: false},
-                {name: 'D', online: true},
-                {name: 'E', online: false},
-                {name: 'F', online: false},
-            ]
     }
   },
   components:{
     NavBar,
     AllFriend,
-    OnlineFriend
-  },
-  methods: {
-    deleteFriend(payload){
-      this.friends = this.friends.filter(friend =>{
-        return friend.name !== payload.name
-      });
-        // console.log(payload);
-    }
   },
 
 }
