@@ -1,23 +1,20 @@
 <template>
-    <div>
-        <nav>
-            <ul>
-                <li><a herf="">Home</a></li>
-                <li><a herf="">Post</a></li>
-                <li><a herf="">About</a></li>
-                <li><a herf="">Contact</a></li>
-            </ul>
-        </nav>
+    <div id="onlinefriend">
+       <h2> Online Friend </h2>
+       <div v-for="(friend, index) in friends" :key="index">
+            <h5 v-if="friend.online">{{ friend.name }}</h5>
+       </div>
     </div>
 </template>
 
 
 <script>
 export default {
-    name: 'NavBar',
+    name: 'OnlineFriend',
+    props:['friends'],
     data() {
         return {
-            
+         
         }
     },
 }
